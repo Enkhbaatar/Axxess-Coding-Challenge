@@ -1,3 +1,3 @@
 package com.enkhee.codingchallenge.utils
 
-const val API_KEY = "5ed574b8c6ea45de9e241900191504"
+const val AUTHORIZATION = "Client-ID 137cda6b5008a7c "

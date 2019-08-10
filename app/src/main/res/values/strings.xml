@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">CodingChallenge</string>
+    <string name="button_submit">Submit</string>
 </resources>
