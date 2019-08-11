@@ -7,7 +7,7 @@ import kotlinx.coroutines.Job
 import kotlinx.coroutines.SupervisorJob
 import kotlin.coroutines.CoroutineContext
 
-abstract class ScopedViewModel:ViewModel(), CoroutineScope {
+abstract class ScopedViewModel:BaseViewModel(), CoroutineScope {
     private var job: Job = SupervisorJob()
 
     override val coroutineContext: CoroutineContext

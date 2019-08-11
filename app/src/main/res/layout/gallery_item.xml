@@ -13,9 +13,11 @@
     </data>
 
     <ImageView
-            android:layout_width="100dp"
-            android:layout_height="100dp"
-            android:onClick="@{() -> viewModel.onItemClick(position)}"
+            android:layout_width="@dimen/column_width"
+            android:layout_height="@dimen/column_width"
+            android:onClick="@{(v) -> viewModel.onItemClick(v,position)}"
+            android:scaleType="centerCrop"
+            android:transitionName="imageTransition"
             app:imageUrl="@{viewModel.images[position].link}"
-            android:scaleType="centerCrop"/>
+    />
 </layout>

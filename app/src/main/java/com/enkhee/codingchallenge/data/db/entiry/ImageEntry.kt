@@ -5,6 +5,8 @@ import com.google.gson.annotations.SerializedName
 import java.io.Serializable
 
 data class ImageEntry(
+    @SerializedName("title")
+    val title: String,
     @SerializedName("description")
     val description: Any,
     @SerializedName("height")

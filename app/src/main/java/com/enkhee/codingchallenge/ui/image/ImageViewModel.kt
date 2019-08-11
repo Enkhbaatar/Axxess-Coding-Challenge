@@ -14,7 +14,6 @@ import kotlinx.coroutines.withContext
 
 class ImageViewModel(private val commentRepository: CommentRepository) :
     ScopedViewModel() {
-    val loadingVisibility: MutableLiveData<Int> = MutableLiveData()
     lateinit var image: ImageEntry
     val adapter = CommentAdapter(R.layout.comment_item, this)
     var comments: List<CommentEntry>? = null

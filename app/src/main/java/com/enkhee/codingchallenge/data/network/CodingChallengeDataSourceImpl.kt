@@ -4,21 +4,28 @@ import android.annotation.SuppressLint
 import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import com.enkhee.codingchallenge.data.network.response.EventState
 import com.enkhee.codingchallenge.data.network.response.GallerySearchResponse
 import com.enkhee.codingchallenge.internal.NoConnectivityException
+import com.enkhee.codingchallenge.internal.ObservableData
+import io.reactivex.Observable
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
+import io.reactivex.subjects.BehaviorSubject
 import java.util.concurrent.TimeUnit
 
 class CodingChallengeDataSourceImpl(
     private val codingChallengeApiService: CodingChallengeApiService
 ) : CodingChallengeDataSource {
 
-
-
     private val _downloadGallery = MutableLiveData<GallerySearchResponse>()
     override val downloadGallery: LiveData<GallerySearchResponse>
         get() = _downloadGallery
+
+    private var _eventState = EventState()
+    private val subject: BehaviorSubject<EventState> = BehaviorSubject.create()
+    override var eventState: Observable<EventState> = subject
+
 
     @SuppressLint("CheckResult")
     override fun fetchGallery(value: String) {
@@ -34,25 +41,28 @@ class CodingChallengeDataSourceImpl(
                     { error -> onError(error) }
                 )
         } catch (e: NoConnectivityException) {
-            Log.e("Connectivity", "No internet connection.", e)
+            _eventState.message = "No internet connection."
+            subject.onNext(_eventState)
         }
     }
 
     private fun onStart() {
-
+        _eventState.message = ""
+        _eventState.state = true
+        subject.onNext(_eventState)
     }
 
     private fun onFinish() {
-
+        _eventState.state = false
+        subject.onNext(_eventState)
     }
 
     private fun onError(error: Throwable) {
-        Log.e("GetGallery", error.toString())
-        Log.v("GetGallery", "Error")
+        _eventState.message = "No internet connection."
+        subject.onNext(_eventState)
     }
 
     private fun onSuccess(result: GallerySearchResponse) {
-        Log.v("GetGallery", "Success")
         _downloadGallery.postValue(result)
     }
 }

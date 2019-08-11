@@ -12,21 +12,30 @@ import org.kodein.di.android.kodein
 import org.kodein.di.generic.instance
 
 class ImageActivity : AppCompatActivity(), KodeinAware {
-    private lateinit var binding:ActivityImageBinding
+    private lateinit var binding: ActivityImageBinding
     override val kodein by kodein()
     private val viewModelFactory: ImageViewModelFactory by instance()
-    private lateinit var viewModel:ImageViewModel
+    private lateinit var viewModel: ImageViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         initializeUI()
     }
 
-    private fun initializeUI(){
+    private fun initializeUI() {
         binding = DataBindingUtil.setContentView(this, R.layout.activity_image)
         viewModel = ViewModelProviders.of(this, viewModelFactory)
             .get(ImageViewModel::class.java)
         binding.viewModel = viewModel
         viewModel.image = intent.getSerializableExtra("image") as ImageEntry
+
+
+        supportActionBar!!.setDisplayHomeAsUpEnabled(true)
+        supportActionBar!!.title = if (viewModel.image.title.isEmpty()) "Not Title" else viewModel.image.title
+    }
+
+    override fun onSupportNavigateUp(): Boolean {
+        onBackPressed()
+        return true
     }
 }

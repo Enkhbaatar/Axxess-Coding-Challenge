@@ -1,5 +1,7 @@
 package com.enkhee.codingchallenge.utils
 
+import android.graphics.Color
+import android.graphics.drawable.ColorDrawable
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.BindingAdapter
@@ -11,13 +13,13 @@ import com.enkhee.codingchallenge.utils.extention.getParentActivity
 import android.widget.ImageView
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.bumptech.glide.Glide
+import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.enkhee.codingchallenge.R
 import com.enkhee.codingchallenge.ui.adapter.gridview.SpacesItemDecoration
 
 @BindingAdapter("gridAdapter")
-fun bindingRecyclerViewAdapter(recyclerView: RecyclerView, adapter: RecyclerView.Adapter<*> ){
-    //recyclerView.setHasFixedSize(true)
-    recyclerView.layoutManager = GridLayoutManager(recyclerView.context, 4)
+fun bindingRecyclerViewAdapter(recyclerView: RecyclerView, adapter: RecyclerView.Adapter<*>) {
+    recyclerView.setHasFixedSize(true)
     recyclerView.addItemDecoration(
         SpacesItemDecoration(
             recyclerView.context,
@@ -28,7 +30,7 @@ fun bindingRecyclerViewAdapter(recyclerView: RecyclerView, adapter: RecyclerView
 }
 
 @BindingAdapter("listAdapter")
-fun bindingRecyclerListViewAdapter(recyclerView: RecyclerView, adapter: RecyclerView.Adapter<*> ){
+fun bindingRecyclerListViewAdapter(recyclerView: RecyclerView, adapter: RecyclerView.Adapter<*>) {
     //recyclerView.setHasFixedSize(true)
     recyclerView.layoutManager = LinearLayoutManager(recyclerView.context)
     recyclerView.addItemDecoration(
@@ -46,7 +48,12 @@ fun bindRecyclerViewAdapter(imageView: ImageView, imageUrl: String?) {
         if (imageView.getTag(R.id.image_url) == null || !imageView.getTag(R.id.image_url).equals(imageUrl)) {
             imageView.setImageBitmap(null)
             imageView.setTag(R.id.image_url, imageUrl)
-            Glide.with(imageView).load(imageUrl).into(imageView)
+
+            Glide.with(imageView)
+                .load(imageUrl)
+                .diskCacheStrategy(DiskCacheStrategy.AUTOMATIC)
+                .placeholder(ColorDrawable(Color.LTGRAY))
+                .into(imageView)
         }
     } else {
         imageView.setTag(R.id.image_url, null)
@@ -57,7 +64,7 @@ fun bindRecyclerViewAdapter(imageView: ImageView, imageUrl: String?) {
 @BindingAdapter("mutableVisibility")
 fun setMutableVisibility(view: View, visibility: MutableLiveData<Int>?) {
     val parentActivity: AppCompatActivity? = view.getParentActivity()
-    if(parentActivity != null && visibility != null) {
-        visibility.observe(parentActivity, Observer { value -> view.visibility = value?: View.VISIBLE})
+    if (parentActivity != null && visibility != null) {
+        visibility.observe(parentActivity, Observer { value -> view.visibility = value ?: View.VISIBLE })
     }
 }

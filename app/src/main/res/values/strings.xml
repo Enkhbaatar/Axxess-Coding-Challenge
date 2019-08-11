@@ -1,4 +1,7 @@
 <resources>
     <string name="app_name">CodingChallenge</string>
     <string name="button_submit">Submit</string>
+    <string name="comment_hint">comment</string>
+    <string name="tv_loading">Loading…</string>
+    <string name="tv_comments">Comments:</string>
 </resources>
