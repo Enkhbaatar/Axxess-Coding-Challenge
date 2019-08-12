@@ -1,7 +1,7 @@
 # Axxess-Coding-Challenge
 #### The app has following packages:
 
-This repository contains a detailed sample app that implements MVVM architecture using Kodien, Room, RxJava, Retrofit, OkHttp3.
+This repository contains a detailed sample app that implements MVVM architecture using Android Architecture components (ViewModel, LiveData, DataBinding, Room Database), Kodien, RxJava, Retrofit, OkHttp3.
 
 <p align="center">
   <img src="template/home.png" width = "250"/>
@@ -21,3 +21,6 @@ This repository contains a detailed sample app that implements MVVM architecture
 4. OkHttp3 (Interceptor): https://github.com/square/okhttp
 5. Coroutines: https://github.com/Kotlin/kotlinx.coroutines
 6. Glide: https://github.com/bumptech/glide
+
+### Concept reference resources:
+1. [AutofitRecyclerView](http://www.devexchanges.info/2016/06/android-tip-auto-column-grid-layout-by.html)
