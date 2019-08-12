@@ -33,7 +33,9 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"/>
+                app:layout_constraintTop_toTopOf="parent"
+                android:translationZ="2dp"
+                android:elevation="2dp"/>
 
         <TextView
                 android:id="@+id/tv_loading"
@@ -43,13 +45,16 @@
                 android:layout_marginTop="8dp"
                 android:layout_marginEnd="8dp"
                 android:layout_marginBottom="8dp"
+                android:translationZ="2dp"
+                android:elevation="2dp"
                 android:text="@string/tv_loading"
                 android:textAppearance='@style/TextAppearance.MaterialComponents.Caption'
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/progressBar_loading"
-                app:layout_constraintVertical_bias="0.0"/>
+                app:layout_constraintVertical_bias="0.0"
+                />
 
         <androidx.constraintlayout.widget.Guideline
                 android:id="@+id/guideline_horizontal"
@@ -82,14 +87,14 @@
         <ImageView
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
-                android:scaleType="centerCrop"
+                android:scaleType="centerInside"
                 android:focusable="true"
                 android:transitionName="imageTransition"
                 android:focusableInTouchMode="true"
                 app:imageUrl="@{viewModel.image.link}"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintBottom_toTopOf="@+id/guideline_horizontal"
-        />
+                android:contentDescription="@string/big_image"/>
         <EditText
                 android:id="@+id/et_comment"
                 android:layout_width="0dp"
@@ -97,10 +102,14 @@
                 android:hint="@string/comment_hint"
                 android:autofillHints="@string/comment_hint"
                 android:text="@={viewModel.comment}"
+                android:maxLines="3"
+                android:inputType="textCapWords|textCapSentences"
                 app:layout_constraintTop_toBottomOf="@+id/guideline_horizontal"
                 app:layout_constraintStart_toStartOf="@+id/gl_left"
                 app:layout_constraintEnd_toStartOf="@+id/guideline_vertical"
-                tools:ignore="UnusedAttribute"/>
+                tools:ignore="UnusedAttribute"
+                android:layout_marginTop="@dimen/margin_comment"
+                android:layout_marginBottom="@dimen/margin_comment"/>
 
         <com.google.android.material.button.MaterialButton
                 android:layout_width="wrap_content"
@@ -111,6 +120,7 @@
                 app:layout_constraintEnd_toStartOf="@+id/gl_right"
                 android:onClick="@{()->viewModel.onClickSubmit()}"
                 android:text="@string/button_submit"/>
+
         <TextView
                 android:id="@+id/tv_comments"
                 android:layout_width="wrap_content"
@@ -118,11 +128,17 @@
                 android:text="@string/tv_comments"
                 android:textAppearance='@style/TextAppearance.MaterialComponents.Headline6'
                 app:layout_constraintTop_toBottomOf="@id/et_comment"
-                app:layout_constraintStart_toEndOf="@+id/gl_left"/>
+                app:layout_constraintStart_toEndOf="@+id/gl_left"
+                android:layout_marginTop="@dimen/margin_comment_header"
+                android:layout_marginBottom="@dimen/margin_comment_header"/>
 
         <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:textAppearance='@style/TextAppearance.MaterialComponents.Headline6'
+                tools:text="No Comments"
+                android:alpha="@dimen/messageTransparency"
+                android:text="@{viewModel.message}"
                 app:layout_constraintTop_toBottomOf="@id/tv_comments"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/gl_left"

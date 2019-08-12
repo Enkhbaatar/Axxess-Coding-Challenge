@@ -6,10 +6,10 @@
     <data>
         <variable
                 name="position"
-                type="java.lang.Integer" />
+                type="java.lang.Integer"/>
         <variable
                 name="viewModel"
-                type="com.enkhee.codingchallenge.ui.gallery.GalleryViewModel" />
+                type="com.enkhee.codingchallenge.ui.gallery.GalleryViewModel"/>
     </data>
 
     <ImageView
@@ -19,5 +19,5 @@
             android:scaleType="centerCrop"
             android:transitionName="imageTransition"
             app:imageUrl="@{viewModel.images[position].link}"
-    />
+            android:contentDescription="@string/gallery_item_desc"/>
 </layout>

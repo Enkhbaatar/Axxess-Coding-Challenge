@@ -91,6 +91,4 @@ dependencies {
     annotationProcessor 'com.android.databinding:compiler:3.1.4'
     implementation 'androidx.lifecycle:lifecycle-livedata-ktx:2.2.0-alpha03'
 
-    // DateTime-time support
-    implementation 'com.jakewharton.threetenabp:threetenabp:1.2.1'
 }

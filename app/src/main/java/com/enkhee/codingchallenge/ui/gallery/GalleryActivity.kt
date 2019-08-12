@@ -4,20 +4,23 @@ import android.app.ActivityOptions
 import android.content.Intent
 import android.os.Bundle
 import android.view.View
+import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.widget.SearchView
 import androidx.databinding.DataBindingUtil
-import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import com.enkhee.codingchallenge.R
-import com.enkhee.codingchallenge.databinding.ActivityMainBinding
-import com.enkhee.codingchallenge.ui.base.ScopedActivity
+import com.enkhee.codingchallenge.data.db.entiry.ImageEntry
+import com.enkhee.codingchallenge.databinding.ActivityGalleryBinding
 import com.enkhee.codingchallenge.ui.image.ImageActivity
 import io.reactivex.disposables.Disposable
+import kotlinx.android.synthetic.main.activity_gallery.*
 import org.kodein.di.KodeinAware
 import org.kodein.di.android.kodein
 import org.kodein.di.generic.instance
 
-class MainActivity : ScopedActivity(), KodeinAware {
-    private lateinit var binding: ActivityMainBinding
+
+class GalleryActivity : AppCompatActivity(), KodeinAware, GalleryActivityCallBack {
+    private lateinit var binding: ActivityGalleryBinding
     override val kodein by kodein()
     private val viewModelFactory: GalleryViewModelFactory by instance()
     private lateinit var viewModel: GalleryViewModel
@@ -29,25 +32,37 @@ class MainActivity : ScopedActivity(), KodeinAware {
         subscribes()
     }
 
+    override fun onItemClick(view: View, imageEntry: ImageEntry) {
+        val intent = Intent(this, ImageActivity::class.java)
+        intent.putExtra("image", imageEntry)
+        val option = ActivityOptions.makeSceneTransitionAnimation(
+            this, view,
+            "imageTransition"
+        )
+        startActivity(intent, option.toBundle())
+    }
+
     private fun initializeUI() {
-        binding = DataBindingUtil.setContentView(this, R.layout.activity_main)
         viewModel = ViewModelProviders.of(this, viewModelFactory)
             .get(GalleryViewModel::class.java)
+        viewModel.setCallBack(this)
+        binding = DataBindingUtil.setContentView(this, R.layout.activity_gallery)
+        binding.lifecycleOwner = this@GalleryActivity
         binding.viewModel = viewModel
+
+        sv_search.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+            override fun onQueryTextSubmit(query: String): Boolean {
+                return false
+            }
+
+            override fun onQueryTextChange(newText: String): Boolean {
+                viewModel.searchQuery.postValue(newText)
+                return false
+            }
+        })
     }
 
     private fun subscribes() {
-        viewModel.selectedImage.observe(this@MainActivity, Observer {
-            val intent = Intent(this@MainActivity, ImageActivity::class.java)
-            intent.putExtra("image", it)
-            val option = ActivityOptions.makeSceneTransitionAnimation(
-                this@MainActivity,
-                viewModel.selectedView,
-                "imageTransition"
-            )
-            this@MainActivity.startActivity(intent, option.toBundle())
-        })
-
         dispose = viewModel.eventState.subscribe {
             if (it.state)
                 viewModel.loadingVisibility.postValue(View.VISIBLE)
@@ -55,7 +70,7 @@ class MainActivity : ScopedActivity(), KodeinAware {
                 viewModel.loadingVisibility.postValue(View.GONE)
 
             if (it.message.isNotEmpty())
-                viewModel.message.postValue(it.message)
+                viewModel._message.postValue(it.message)
         }
     }
 

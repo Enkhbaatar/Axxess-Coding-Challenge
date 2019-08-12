@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout
-        xmlns:android="http://schemas.android.com/apk/res/android">
+        xmlns:android="http://schemas.android.com/apk/res/android" xmlns:tools="http://schemas.android.com/tools">
     <data>
         <variable
                 name="viewModel"
                 type="com.enkhee.codingchallenge.ui.image.ImageViewModel"/>
         <variable
                 name="position"
-                type="java.lang.Integer" />
+                type="java.lang.Integer"/>
     </data>
 
     <LinearLayout
@@ -17,9 +17,16 @@
         <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@{viewModel.comments[position].comment}"/>
+                android:text="@{viewModel.comments[position].comment}"
+                android:textAppearance="@style/TextAppearance.MaterialComponents.Body1"
+                tools:text="Comment"/>
         <TextView
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"/>
+                android:layout_height="wrap_content"
+                android:text="@{viewModel.comments[position].dateTime}"
+                android:textAppearance="@style/TextAppearance.MaterialComponents.Caption"
+                tools:text="comment date"
+                android:layout_gravity="end"
+                android:gravity="end"/>
     </LinearLayout>
 </layout>

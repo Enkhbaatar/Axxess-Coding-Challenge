@@ -23,15 +23,16 @@ class ImageActivity : AppCompatActivity(), KodeinAware {
     }
 
     private fun initializeUI() {
-        binding = DataBindingUtil.setContentView(this, R.layout.activity_image)
         viewModel = ViewModelProviders.of(this, viewModelFactory)
             .get(ImageViewModel::class.java)
+        binding = DataBindingUtil.setContentView(this, R.layout.activity_image)
+        binding.lifecycleOwner = this@ImageActivity
         binding.viewModel = viewModel
+
         viewModel.image = intent.getSerializableExtra("image") as ImageEntry
 
-
         supportActionBar!!.setDisplayHomeAsUpEnabled(true)
-        supportActionBar!!.title = if (viewModel.image.title.isEmpty()) "Not Title" else viewModel.image.title
+        supportActionBar!!.title = if (viewModel.image.title.isNullOrEmpty()) "Not Title" else viewModel.image.title
     }
 
     override fun onSupportNavigateUp(): Boolean {

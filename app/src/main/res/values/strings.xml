@@ -1,7 +1,10 @@
 <resources>
-    <string name="app_name">CodingChallenge</string>
+    <string name="app_name">Imgur Gallery</string>
     <string name="button_submit">Submit</string>
-    <string name="comment_hint">comment</string>
+    <string name="comment_hint">Write some comment</string>
     <string name="tv_loading">Loading…</string>
     <string name="tv_comments">Comments:</string>
+    <string name="sv_search">Search image</string>
+    <string name="gallery_item_desc">Image</string>
+    <string name="big_image">image</string>
 </resources>

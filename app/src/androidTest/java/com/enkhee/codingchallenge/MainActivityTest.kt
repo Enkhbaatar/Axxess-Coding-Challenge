@@ -1,17 +1,16 @@
 package com.enkhee.codingchallenge
 
 import androidx.test.espresso.Espresso
-import androidx.test.espresso.action.ViewActions
 import androidx.test.espresso.assertion.ViewAssertions
 import androidx.test.espresso.matcher.ViewMatchers
 import androidx.test.rule.ActivityTestRule
-import com.enkhee.codingchallenge.ui.gallery.MainActivity
+import com.enkhee.codingchallenge.ui.gallery.GalleryActivity
 import org.junit.Rule
 import org.junit.Test
 
 class MainActivityTest {
     @get:Rule
-    val activityRule = ActivityTestRule(MainActivity::class.java)
+    val activityRule = ActivityTestRule(GalleryActivity::class.java)
 
     @Test
     fun sayHello(){

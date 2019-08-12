@@ -2,4 +2,8 @@
 <resources>
     <dimen name="item_offset">3dp</dimen>
     <dimen name="column_width">80dp</dimen>
+    <dimen name="margin_comment">6dp</dimen>
+    <dimen name="margin_searchView">6dp</dimen>
+    <dimen name="margin_comment_header">8dp</dimen>
+    <item name="messageTransparency" format="float" type="dimen">0.38</item>
 </resources>

@@ -17,7 +17,9 @@
             tools:ignore="AllowBackup,GoogleAppIndexingWarning">
         <activity android:name=".ui.image.ImageActivity">
         </activity>
-        <activity android:name=".ui.gallery.MainActivity">
+        <activity
+                android:name=".ui.gallery.GalleryActivity"
+                android:theme="@style/NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
 

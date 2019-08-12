@@ -2,15 +2,17 @@ package com.enkhee.codingchallenge.utils
 
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
+import android.graphics.drawable.Drawable
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.BindingAdapter
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Observer
-import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.enkhee.codingchallenge.utils.extention.getParentActivity
 import android.widget.ImageView
+import androidx.core.content.ContextCompat
+import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.engine.DiskCacheStrategy
@@ -31,14 +33,17 @@ fun bindingRecyclerViewAdapter(recyclerView: RecyclerView, adapter: RecyclerView
 
 @BindingAdapter("listAdapter")
 fun bindingRecyclerListViewAdapter(recyclerView: RecyclerView, adapter: RecyclerView.Adapter<*>) {
-    //recyclerView.setHasFixedSize(true)
     recyclerView.layoutManager = LinearLayoutManager(recyclerView.context)
+    val verticalDecoration = DividerItemDecoration(recyclerView.context, DividerItemDecoration.VERTICAL)
+    val verticalDivider: Drawable? = ContextCompat.getDrawable(recyclerView.context, R.drawable.vertical_divider)
+    verticalDecoration.setDrawable(verticalDivider!!)
     recyclerView.addItemDecoration(
         SpacesItemDecoration(
             recyclerView.context,
             R.dimen.item_offset
         )
     )
+    recyclerView.addItemDecoration(verticalDecoration)
     recyclerView.adapter = adapter
 }
 
@@ -51,6 +56,7 @@ fun bindRecyclerViewAdapter(imageView: ImageView, imageUrl: String?) {
 
             Glide.with(imageView)
                 .load(imageUrl)
+                .centerInside()
                 .diskCacheStrategy(DiskCacheStrategy.AUTOMATIC)
                 .placeholder(ColorDrawable(Color.LTGRAY))
                 .into(imageView)

@@ -21,6 +21,7 @@ class ImageViewModel(private val commentRepository: CommentRepository) :
 
     init {
         fetchComments()
+        _message.postValue("No Comments")
     }
 
     private fun setImagesInAdapter(comments: List<CommentEntry>) {
@@ -32,8 +33,11 @@ class ImageViewModel(private val commentRepository: CommentRepository) :
         launch {
             loadingVisibility.postValue(View.VISIBLE)
             withContext(Dispatchers.IO) {
-                commentRepository.insertComment(image.id, comment.value!!)
-                fetchComments()
+                if (comment.value != null) {
+                    commentRepository.insertComment(image.id, comment.value!!)
+                    fetchComments()
+                }
+                comment.postValue("")
             }
         }
     }
@@ -44,6 +48,8 @@ class ImageViewModel(private val commentRepository: CommentRepository) :
 
         launch {
             commentRepository.fetchComments(image.id).observeForever {
+                if (it.size > 0)
+                    _message.postValue("")
                 setImagesInAdapter(it)
                 loadingVisibility.postValue(View.GONE)
             }

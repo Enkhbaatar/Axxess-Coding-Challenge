@@ -10,27 +10,25 @@ import android.R.attr.columnWidth
 import com.enkhee.codingchallenge.ui.adapter.gridview.SpacesItemDecoration
 import kotlin.math.max
 
-
 class AutofitRecyclerView : RecyclerView {
     private lateinit var manager: GridLayoutManager
-    private var colWith:Int = -1
+    private var colWith: Int = -1
 
-    constructor(context: Context):super(context){
+    constructor(context: Context) : super(context) {
         initialize(context, null)
     }
 
-    constructor(context: Context, attrs: AttributeSet):super(context, attrs){
+    constructor(context: Context, attrs: AttributeSet) : super(context, attrs) {
         initialize(context, attrs)
     }
 
-    constructor(context: Context, attrs: AttributeSet, def:Int):super(context, attrs, def){
+    constructor(context: Context, attrs: AttributeSet, def: Int) : super(context, attrs, def) {
         initialize(context, attrs)
     }
-
 
     @SuppressLint("Recycle")
-    private fun initialize(context:Context, attrs: AttributeSet?){
-        if(attrs != null){
+    private fun initialize(context: Context, attrs: AttributeSet?) {
+        if (attrs != null) {
             val attrsArray = intArrayOf(columnWidth)
             val array: TypedArray = context.obtainStyledAttributes(attrs, attrsArray)
             colWith = array.getDimensionPixelOffset(0, -1)
@@ -44,7 +42,7 @@ class AutofitRecyclerView : RecyclerView {
     override fun onMeasure(widthSpec: Int, heightSpec: Int) {
         super.onMeasure(widthSpec, heightSpec)
 
-        if(colWith > 0){
+        if (colWith > 0) {
             val spanCount = max(1, measuredWidth / colWith)
             manager.spanCount = spanCount
         }
