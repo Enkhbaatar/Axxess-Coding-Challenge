@@ -5,14 +5,19 @@ This repository contains a detailed sample app that implements MVVM architecture
 
 <p align="center">
   <img src="template/home.png" width = "250"/>
-  <img src="template/image_no comment.png" width = "250"/>
+  <img src="template/image_no comments.png" width = "250"/>
   <img src="template/image commented.png" width = "250"/>
 </p>
-
-
 
 1. **data**: It contains all the data accessing and manipulating components.
 3. **ui**: View classes along with their corresponding ViewModels.
 4. **internal**:
 5. **utils**: Utility classes.
 
+### Library reference resources:
+1. RxJava2: https://github.com/amitshekhariitbhu/RxJava2-Android-Samples
+2. Kodein: https://github.com/Kodein-Framework/Kodein-DI
+3. Retrofit: https://github.com/square/retrofit
+4. OkHttp3 (Interceptor): https://github.com/square/okhttp
+5. Coroutines: https://github.com/Kotlin/kotlinx.coroutines
+6. Glide: https://github.com/bumptech/glide
