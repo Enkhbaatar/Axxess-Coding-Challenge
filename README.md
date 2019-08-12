@@ -9,7 +9,7 @@ This repository contains a detailed sample app that implements MVVM architecture
 </p>
 
 # Architecture Blueprint
-![Blueprint](template/architecture_bp.png)
+![Blueprint](template/architecture_bp.jpg)
 <br>
 
 #### The app has following packages:
