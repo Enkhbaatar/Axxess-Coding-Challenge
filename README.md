@@ -1,5 +1,4 @@
 # Axxess-Coding-Challenge
-#### The app has following packages:
 
 This repository contains a detailed sample app that implements MVVM architecture using Android Architecture components (ViewModel, LiveData, DataBinding, Room Database), Kodien, RxJava, Retrofit, OkHttp3.
 
@@ -9,6 +8,7 @@ This repository contains a detailed sample app that implements MVVM architecture
   <img src="template/image commented.png" width = "250"/>
 </p>
 
+#### The app has following packages:
 1. **data**: It contains all the data accessing and manipulating components.
 3. **ui**: View classes along with their corresponding ViewModels.
 4. **internal**:
