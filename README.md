@@ -9,8 +9,16 @@ This repository contains a detailed sample app that implements MVVM architecture
 </p>
 
 # Architecture Blueprint
-![Blueprint](template/architecture_bp.jpg)
-<br>
+<p align="center">
+  <img src="template/architecture_bp.jpg"/>
+  <br>
+</p>
+  
+# Architecture Blueprint
+<p align="center">
+  <img src="template/Project_structure.jpg"/>
+  <br>
+</p>
 
 #### The app has following packages:
 1. **data**: It contains all the data accessing and manipulating components.
