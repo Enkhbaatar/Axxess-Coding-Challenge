@@ -14,7 +14,7 @@ This repository contains a detailed sample app that implements MVVM architecture
   <br>
 </p>
   
-# Architecture Blueprint
+# Project Structure
 <p align="center">
   <img src="template/Project_structure.jpg"/>
   <br>
