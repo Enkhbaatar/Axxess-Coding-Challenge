@@ -1,6 +1,6 @@
 # Axxess-Coding-Challenge
 
-This repository contains a detailed sample app that implements MVVM architecture using Android Architecture components (ViewModel, LiveData, DataBinding, Room Database), Kodien, RxJava, Retrofit, OkHttp3.
+This repository contains a detailed sample app that implements MVVM architecture using Kotlin, Android Architecture components (ViewModel, LiveData, DataBinding, Room Database), Kodien, RxJava, Retrofit, OkHttp3.
 
 <p align="center">
   <img src="template/home.png" width = "250"/>
