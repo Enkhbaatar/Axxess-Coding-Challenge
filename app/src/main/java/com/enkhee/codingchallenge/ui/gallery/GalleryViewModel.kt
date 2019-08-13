@@ -1,6 +1,7 @@
 package com.enkhee.codingchallenge.ui.gallery
 
 import android.view.View
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.enkhee.codingchallenge.R
 import com.enkhee.codingchallenge.data.repository.GalleryRepository
@@ -11,7 +12,7 @@ import com.enkhee.codingchallenge.ui.base.BaseViewModel
 class GalleryViewModel(
     private val galleryRepository: GalleryRepository
 ) : BaseViewModel() {
-    private lateinit var classBack:GalleryActivityCallBack
+    private lateinit var classBack: GalleryActivityCallBack
     val searchQuery: MutableLiveData<String> = MutableLiveData()
     val adapter = GalleryAdapter(R.layout.gallery_item, this)
     var images: List<ImageEntry>? = null
@@ -20,22 +21,14 @@ class GalleryViewModel(
     init {
         loadingVisibility.postValue(View.GONE)
         _message.postValue("No Images")
-
-        searchQuery.observeForever {
-            if (it.isNotEmpty()) {
-                sendRequest(it)
-            }
-        }
         sendRequest("")
     }
 
-    private fun sendRequest(query:String){
-        galleryRepository.searchGallery(query).observeForever {
-            setImagesInAdapter(it)
-        }
+    fun sendRequest(query: String):LiveData<out List<ImageEntry>> {
+        return galleryRepository.searchGallery(query)
     }
 
-    private fun setImagesInAdapter(images: List<ImageEntry>) {
+    fun setImagesInAdapter(images: List<ImageEntry>) {
         if (images.isEmpty())
             _message.postValue("No images")
         else
@@ -45,7 +38,7 @@ class GalleryViewModel(
         this.adapter.notifyDataSetChanged()
     }
 
-    fun setCallBack(classBack: GalleryActivityCallBack){
+    fun setCallBack(classBack: GalleryActivityCallBack) {
         this.classBack = classBack
     }
 

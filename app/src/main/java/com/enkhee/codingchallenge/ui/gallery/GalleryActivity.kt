@@ -7,6 +7,7 @@ import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.SearchView
 import androidx.databinding.DataBindingUtil
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import com.enkhee.codingchallenge.R
 import com.enkhee.codingchallenge.data.db.entiry.ImageEntry
@@ -63,6 +64,16 @@ class GalleryActivity : AppCompatActivity(), KodeinAware, GalleryActivityCallBac
     }
 
     private fun subscribes() {
+        viewModel.searchQuery.observe(this, Observer { it ->
+            if (it.isNotEmpty()) {
+                viewModel.sendRequest(it).observe(
+                    this@GalleryActivity,
+                    Observer {
+                        viewModel.setImagesInAdapter(it)
+                    })
+            }
+        })
+
         dispose = viewModel.eventState.subscribe {
             if (it.state)
                 viewModel.loadingVisibility.postValue(View.VISIBLE)

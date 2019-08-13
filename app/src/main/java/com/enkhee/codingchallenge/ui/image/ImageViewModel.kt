@@ -20,6 +20,7 @@ class ImageViewModel(private val commentRepository: CommentRepository) :
     val comment: MutableLiveData<String> = MutableLiveData()
 
     init {
+        loadingVisibility.postValue(View.GONE)
         fetchComments()
         _message.postValue("No Comments")
     }
@@ -48,10 +49,10 @@ class ImageViewModel(private val commentRepository: CommentRepository) :
 
         launch {
             commentRepository.fetchComments(image.id).observeForever {
-                if (it.size > 0)
+                if (it.isNotEmpty())
                     _message.postValue("")
-                setImagesInAdapter(it)
                 loadingVisibility.postValue(View.GONE)
+                setImagesInAdapter(it)
             }
         }
     }
