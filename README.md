@@ -4,7 +4,7 @@ This repository contains a detailed sample app that implements MVVM architecture
 
 <p align="center">
   <img src="template/home.png" width = "250"/>
-  <img src="template/image_no comments.png" width = "250"/>
+  <img src="template/paris.png" width = "250"/>
   <img src="template/image commented.png" width = "250"/>
 </p>
 
