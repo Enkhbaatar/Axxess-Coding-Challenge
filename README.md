@@ -39,7 +39,7 @@ Tried to write test using libraries below.
   1. GalleryViewModel test. 
   2. Image search Test (ApiServiceTest).
   3. ImageViewModel test.
-Libraries:
+### Testing Libraries
   1. JUnit 4: https://github.com/junit-team/junit4
   2. Mokito: https://github.com/mockito/mockito
   3. Expresso
