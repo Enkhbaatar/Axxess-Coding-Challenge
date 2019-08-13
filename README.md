@@ -34,5 +34,11 @@ This repository contains a detailed sample app that implements MVVM architecture
 5. Coroutines: https://github.com/Kotlin/kotlinx.coroutines
 6. Glide: https://github.com/bumptech/glide
 
+### Testing
+Tried to write test using librarien below. Test not completed.
+1. JUnit 4: https://github.com/junit-team/junit4
+2. Mokito: https://github.com/mockito/mockito
+3. Expresso
+
 ### Concept reference resources:
 1. [AutofitRecyclerView](http://www.devexchanges.info/2016/06/android-tip-auto-column-grid-layout-by.html)
