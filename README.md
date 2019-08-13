@@ -35,10 +35,10 @@ This repository contains a detailed sample app that implements MVVM architecture
 6. Glide: https://github.com/bumptech/glide
 
 ### Testing
-Tried to write test using libraries below.
-  1. GalleryViewModel test. 
-  2. Image search Test (ApiServiceTest).
-  3. ImageViewModel test.
+  1. GalleryViewModel test
+  2. Image search test (ApiServiceTest)
+  3. ImageViewModel test (Haven't completed yet)
+  
 ### Testing Libraries
   1. JUnit 4: https://github.com/junit-team/junit4
   2. Mokito: https://github.com/mockito/mockito
